@@ -1,15 +1,29 @@
-# Симулировать поведение гироскопа и акселерометра с шумами и дрейфами.
+import numpy as np
 
 class MEMSSimulator:
     def __init__(self, dt=0.01, gyro_drift=0.05, noise_std=0.1):
-        # Сохраняет параметры: шаг времени, дрейф гироскопа, стандартное отклонение шума
-        # Инициализирует текущее смещение гироскопа (bias)
+        """
+        Инициализация симулятора MEMS-датчиков.
+        :param dt: шаг времени (с)
+        :param gyro_drift: скорость дрейфа гироскопа (рад/с в секунду)
+        :param noise_std: стандартное отклонение шума
+        """
+        self.dt = dt
+        self.gyro_drift = gyro_drift
+        self.noise_std = noise_std
+        self.gyro_bias = 0.0
 
     def get_gyro(self, true_rate: float) -> float:
-        # Принимает истинную угловую скорость (true_rate)
-        # Возвращает: true_rate + случайный шум + смещение (дрейф)
-        # Смещение меняется от вызова к вызову (накопление дрейфа)
+        """
+        Возвращает измеренную угловую скорость.
+        """
+        self.gyro_bias += np.random.randn() * self.gyro_drift * self.dt
+        noise = np.random.randn() * self.noise_std
+        return true_rate + self.gyro_bias + noise
 
     def get_accel(self, true_angle: float) -> float:
-        # Принимает истинный угол (true_angle)
-        # Возвращает: true_angle + случайный шум
+        """
+        Возвращает измеренное значение ускорения (или угла).
+        """
+        noise = np.random.randn() * self.noise_std
+        return true_angle + noise
