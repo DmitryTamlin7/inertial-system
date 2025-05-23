@@ -33,3 +33,6 @@ class KalmanFilter:
 
     def get_estimate(self):
         return self.angle
+
+    def get_angle(self):
+        return self.angle
