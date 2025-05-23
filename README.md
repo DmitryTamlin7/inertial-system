@@ -54,8 +54,8 @@ source .venv/bin/activate  # для Linux/Mac
 Установите зависимости:
 
 pip install -r requirements.txt
+````
 Запустите симуляцию:
+```
 python main/run_simulation.py
-
-
 ```
