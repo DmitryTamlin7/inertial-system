@@ -24,7 +24,7 @@
 
 ![Screenshot](/Photo/PyEnd.png)
 
-![Screenshot](photo/test.png)
+![Screenshot](/Photo/test.png)
 
 ## Быстрый старт
 
@@ -32,7 +32,7 @@
 
 ```bash
 
-git clone <URL_репозитория>
+git clone <https://github.com/DmitryTamlin7/inertial-system?tab=readme-ov-file>
 cd inertial-system
 ```
 
